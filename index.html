@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Luciano & Keena</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 6px;
+      background: #f9f9f9;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px 12px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin: 0 0 16px;
+      background: linear-gradient(90deg, #ff6a00, #ee0979);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 2rem;
+      font-weight: 500;
+      margin: 0;
+      background: linear-gradient(90deg, #00c6ff, #0072ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      background: #ddd;
+      cursor: pointer;
+    }
+
+    .card img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .overlay {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 40%;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 4px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay span {
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card:hover .overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1 class="hero-title">Luciano & Keena</h1>
+      <p class="hero-subtitle">30/08/2025</p>
+    </header>
+
+    <div id="gallery" class="gallery"></div>
+  </div>
+
+  <script>
+    // Substitua estes links pelos links de visualização pública do Google Drive
+    const images = [
+      { url: "https://drive.google.com/uc?id=ID_DA_IMAGEM1", name: "Foto 1" },
+      { url: "https://drive.google.com/uc?id=ID_DA_IMAGEM2", name: "Foto 2" },
+      { url: "https://drive.google.com/uc?id=ID_DA_IMAGEM3", name: "Foto 3" }
+    ];
+
+    const gallery = document.getElementById("gallery");
+
+    images.forEach(imgData => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.onclick = () => window.open(imgData.url, "_blank");
+
+      const img = document.createElement("img");
+      img.src = imgData.url;
+      img.alt = imgData.name;
+
+      const overlay = document.createElement("div");
+      overlay.className = "overlay";
+      overlay.innerHTML = `<span>${imgData.name}</span>`;
+
+      card.appendChild(img);
+      card.appendChild(overlay);
+      gallery.appendChild(card);
+    });
+  </script>
+</body>
+</html>
